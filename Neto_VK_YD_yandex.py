@@ -1,5 +1,4 @@
 import requests
-import json
 
 
 class YdiskUploader:
@@ -23,7 +22,6 @@ class YdiskUploader:
 
     def upload_by_url(self, path_to_disk, info_list):
         """ Upload photos to Yandex disk by url list """
-
         self.create_folder(path_to_disk)
         url = f'{self.url_base}/v1/disk/resources/upload/'
         for i, item in enumerate(info_list):
@@ -36,10 +34,3 @@ class YdiskUploader:
             else:
                 print(f'<Ошибка. Код: {res_post.status_code}>')
         return info_list
-
-    def write_info_file(self, info_list):
-        """ Write a file in json format """
-
-        with open('info_file.json', 'w', encoding='utf-8') as f:
-            json.dump(info_list, f, ensure_ascii=False, indent=4)
-        print("<Файл 'info_file.json' сохранен>")
